@@ -1,0 +1,24 @@
+{
+	"name": "veams-bp-react-container",
+	"version": "0.0.1",
+	"description": "Blueprint templates for a react container component.",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Veams/veams-bp-react-container.git"
+	},
+	"keywords": [
+		"Veams",
+		"React",
+		"Container",
+		"Blueprint"
+	],
+	"author": "Sebastian Fitzner",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Veams/veams-bp-react-container/issues"
+	},
+	"homepage": "https://github.com/Veams/veams-bp-react-container#readme"
+}

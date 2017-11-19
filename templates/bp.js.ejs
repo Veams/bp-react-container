@@ -1,0 +1,82 @@
+// Generic libraries
+import React, { Component } from 'react';
+import { connect } from 'react-redux';<% if (props.containerCheckProps) { %>
+import { boolean } from 'prop-types';<% } %>
+
+// Containers, Components, Store & More<% if (props.containerStaticLoadData) { %>
+import * as fromData from '../../store/<%= filename %>.actions';<% } %>
+
+/**
+ * Get slice out of current state by using selector functions.
+ *
+ * @param {object} state - Current state of the whole store.
+ */
+function mapStateToProps(state) {
+	return {
+		// isInitialized: getUiInitializedState(state)
+	}
+}
+
+/**
+ * @class
+ * @classdesc Container component to render a view and
+ * decorate that with the selected store slice.
+ */
+@connect(mapStateToProps)
+class <%= bpJsName %> extends Component {
+	/**
+	 * Internal state of component.
+	 */
+	state = {
+		// isInitialized: this.props.isInitialized
+	};<% if (props.containerCheckProps) { %>
+
+	/**
+	 * Static property check.
+	 */
+	static propTypes = {
+		// isInitialized: boolean.isRequired
+	};<% } %><% if (props.containerStaticLoadData) { %>
+
+	/**
+	 * Load the data by using a separate function.
+	 * This method can later be used on server side to get an initial state as well.
+	 *
+	 * @param {Object} store - store singleton.
+	 */
+	static loadData(store) {<% if (props.containerLoadDataAction) { %>
+		return store.dispatch(fromData.<%= props.containerLoadDataAction %>());<% } else { %>
+		return store.dispatch(fromData.fetch<%= bpJsName %>());<% } %>
+	}<% } %><% if (props.containerMethods.indexOf('componentWillMount') !== -1) { %>
+
+	/**
+	 * Lifecycle hook before component is mounted.
+	 */
+	componentWillMount() {}<% } %><% if (props.containerMethods.indexOf('componentDidMount') !== -1) { %>
+
+	/**
+	 * Lifecycle hook after component is mounted.
+	 */
+	componentDidMount() {}<% } %><% if (props.containerMethods.indexOf('componentWillReceiveProps') !== -1) { %>
+
+	/**
+	 * Get new props and set a new state
+	 * if necessary.
+	 *
+	 * @param {Object} nextProps - updated property objects.
+	 */
+	componentWillReceiveProps(nextProps) {}<% } %>
+
+	/**
+	 * Render component
+	 */
+	render() {
+		return (
+			<div>
+				<p><%= bpJsName %> is working!</p>
+			</div>
+		);
+	}
+}
+
+export default <%= bpJsName %>;
