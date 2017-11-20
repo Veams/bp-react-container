@@ -46,7 +46,7 @@ class <%= bpJsName %> extends Component {
 	 */
 	static loadData(store) {<% if (props.containerLoadDataAction) { %>
 		return store.dispatch(fromData.<%= props.containerLoadDataAction %>());<% } else { %>
-		return store.dispatch(fromData.fetch<%= bpJsName %>());<% } %>
+		return store.dispatch(fromData.get<%= bpJsName %>());<% } %>
 	}<% } %><% if (props.containerMethods.indexOf('componentWillMount') !== -1) { %>
 
 	/**
