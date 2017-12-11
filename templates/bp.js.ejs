@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';<% if (props.containerCheckProps) { %>
 import { boolean } from 'prop-types';<% } %>
 
-// Containers, Components, Store & More<% if (props.containerStaticLoadData) { %>
-import * as fromData from '../../store/<%= filename %>.actions';<% } %>
+// Containers, Components, Store & More
+import store from '../../../../app.store';<% if (props.containerStaticLoadData) { %>
+import * as Actions from '../../store/<%= filename %>.actions';<% } %>
+import * as fromData from '../../store/<%= filename %>.selectors';
 
 /**
  * Get slice out of current state by using selector functions.
@@ -13,7 +15,7 @@ import * as fromData from '../../store/<%= filename %>.actions';<% } %>
  */
 function mapStateToProps(state) {
 	return {
-		// isInitialized: getUiInitializedState(state)
+		// entities: get<%= bpJsName %>Entities(state)
 	}
 }
 
@@ -28,7 +30,7 @@ class <%= bpJsName %> extends Component {
 	 * Internal state of component.
 	 */
 	state = {
-		// isInitialized: this.props.isInitialized
+		// entities: this.props.entities
 	};<% if (props.containerCheckProps) { %>
 
 	/**
@@ -45,8 +47,8 @@ class <%= bpJsName %> extends Component {
 	 * @param {Object} store - store singleton.
 	 */
 	static loadData(store) {<% if (props.containerLoadDataAction) { %>
-		return store.dispatch(fromData.<%= props.containerLoadDataAction %>());<% } else { %>
-		return store.dispatch(fromData.get<%= bpJsName %>());<% } %>
+		return store.dispatch(Actions.<%= props.containerLoadDataAction %>());<% } else { %>
+		return store.dispatch(Actions.<%= bpName %>Load());<% } %>
 	}<% } %><% if (props.containerMethods.indexOf('componentWillMount') !== -1) { %>
 
 	/**
@@ -57,7 +59,9 @@ class <%= bpJsName %> extends Component {
 	/**
 	 * Lifecycle hook after component is mounted.
 	 */
-	componentDidMount() {}<% } %><% if (props.containerMethods.indexOf('componentWillReceiveProps') !== -1) { %>
+	componentDidMount() {<% if (props.containerStaticLoadData) { %>
+		this.constructor.loadData(store);
+	<% } %>}<% } %><% if (props.containerMethods.indexOf('componentWillReceiveProps') !== -1) { %>
 
 	/**
 	 * Get new props and set a new state

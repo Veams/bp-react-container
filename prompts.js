@@ -18,7 +18,7 @@ module.exports = function (context) {
 					value: 'componentWillReceiveProps'
 				}
 			],
-			default: ['componentWillMount']
+			default: ['componentDidMount']
 		},
 		{
 			type: 'confirm',
