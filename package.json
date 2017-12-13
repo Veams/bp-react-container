@@ -1,6 +1,6 @@
 {
 	"name": "veams-bp-react-container",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"description": "Blueprint templates for a react container component.",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"

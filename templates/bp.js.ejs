@@ -1,11 +1,11 @@
 // Generic libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux';<% if (props.containerCheckProps) { %>
-import { boolean } from 'prop-types';<% } %>
+import { object } from 'prop-types';<% } %>
 
 // Containers, Components, Store & More
 import store from '../../../../app.store';<% if (props.containerStaticLoadData) { %>
-import * as Actions from '../../store/<%= filename %>.actions';<% } %>
+import * as actions from '../../store/<%= filename %>.actions';<% } %>
 import * as fromData from '../../store/<%= filename %>.selectors';
 
 /**
@@ -15,7 +15,7 @@ import * as fromData from '../../store/<%= filename %>.selectors';
  */
 function mapStateToProps(state) {
 	return {
-		// entities: get<%= bpJsName %>Entities(state)
+		// entities: fromData.get<%= bpJsName %>Entities(state)
 	}
 }
 
@@ -37,7 +37,7 @@ class <%= bpJsName %> extends Component {
 	 * Static property check.
 	 */
 	static propTypes = {
-		// isInitialized: boolean.isRequired
+		// entities: object.isRequired
 	};<% } %><% if (props.containerStaticLoadData) { %>
 
 	/**
@@ -47,8 +47,8 @@ class <%= bpJsName %> extends Component {
 	 * @param {Object} store - store singleton.
 	 */
 	static loadData(store) {<% if (props.containerLoadDataAction) { %>
-		return store.dispatch(Actions.<%= props.containerLoadDataAction %>());<% } else { %>
-		return store.dispatch(Actions.<%= bpName %>Load());<% } %>
+		return store.dispatch(actions.<%= props.containerLoadDataAction %>());<% } else { %>
+		return store.dispatch(actions.<%= bpName %>Load());<% } %>
 	}<% } %><% if (props.containerMethods.indexOf('componentWillMount') !== -1) { %>
 
 	/**
