@@ -1,4 +1,4 @@
-# Veams Blueprint - React Container
+# Veams Blueprint - React Container (`@veams/bp-react-container`)
 
 With this blueprint you can scaffold a react container component with multiple options:
 
@@ -12,7 +12,7 @@ With this blueprint you can scaffold a react container component with multiple o
 1. First of all be sure you have installed `veams-cli`.
 1. After that be sure your project contains a [`veams-cli.json`](https://github.com/Sebastian-Fitzner/generator-veams/blob/dev/generators/app/templates/veams-cli.json).
 1. Make sure you have updated `veams-cli.json` to fit the needs of your project.
-1. Install the package with `npm i veams-bp-react-container --save-dev`.
+1. Install the package with `npm i @veams/bp-react-container --save-dev`.
 1. Reference the package in `veams-cli.json` by adding `container` to the `blueprint` object like so:
 
 ``` json
@@ -20,8 +20,7 @@ With this blueprint you can scaffold a react container component with multiple o
     "blueprints": {
         "container": {
             "skipImports": true,
-            "prompts": "node_modules/veams-bp-react-container/prompts",
-            "templates": "node_modules/veams-bp-react-container/templates"
+            "path": "node_modules/@veams/bp-react-container"
         }
     }
 }
