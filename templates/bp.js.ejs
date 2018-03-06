@@ -15,7 +15,7 @@ import * as fromData from '../../store/<%= filename %>.selectors';
  */
 function mapStateToProps(state) {
 	return {
-		// entities: fromData.get<%= bpJsName %>Entities(state)
+		entities: fromData.get<%= bpJsName %>Entities(state)
 	}
 }
 
@@ -75,6 +75,8 @@ class <%= bpJsName %> extends Component {
 	 * Render component
 	 */
 	render() {
+		const { entities } = this.props;
+
 		return (
 			<div>
 				<p><%= bpJsName %> is working!</p>
